@@ -1,4 +1,6 @@
-const url = "https://kea-alt-del.dk/t7/api/products/2801";
+const urlParams = new URLSearchParams(window.location.search); //go in the URL and search for a parameter
+const queryId = urlParams.get("id"); //get in the URL the parameter ID and store it in the variable queryId
+const url = "https://kea-alt-del.dk/t7/api/products/" + queryId; //the url gets the url with the correct ID
 
 //fetch data
 fetch(url)
