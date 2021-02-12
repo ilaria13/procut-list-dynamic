@@ -1,4 +1,8 @@
-const url = "https://kea-alt-del.dk/t7/api/products";
+const urlParams = new URLSearchParams(window.location.search);
+//in the URL grab the ID and store its value in the idProduct
+const category = urlParams.get("category");
+console.log(category);
+const url = "https://kea-alt-del.dk/t7/api/products?category=" + category;
 
 fetch(url) //fetch the data
   .then(function (res) {
@@ -36,13 +40,13 @@ function showProduct(product) {
   //clone it
   const copy = template.cloneNode(true);
   //change content
+  document.querySelector("h1").textContent = product.category;
   copy.querySelector(".name span").textContent = product.productdisplayname;
   copy.querySelector(".price").textContent = product.price;
   copy.querySelector(
     ".productImage"
   ).src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
   copy.querySelector("a").href = `productPage.html?id=${product.id}`;
-
   //check if sould out or discount
   if (product.soldout) {
     copy.querySelector("article").classList.add("soldOut");
